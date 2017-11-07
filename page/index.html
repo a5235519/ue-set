@@ -1,0 +1,794 @@
+<!doctype html>
+<html>
+<style>
+.otp_nav,.x_popup_wrp{ display:none;}
+.box{border:1px dashed #dddddd; background:#f0f3f9; padding:10px;color:#00f;}
+</style>
+<head>
+<meta charset="utf-8">
+<title>常用交互组件集合</title>
+<link rel="stylesheet" type="text/css" href="css/main.css">
+<link rel="stylesheet" type="text/css" href="css/prism.css">
+<style type="text/css">
+.section{margin-bottom:40px;}
+.section .item{margin-bottom:30px;}
+.section .red{color:#f00;}
+.section h4{font-size: 16px;margin:10px 0;}
+pre span{color:#e54f41;}
+pre strong{color:#888;font-weight: 100;}
+
+/* 图片居中溢出隐藏  */  
+.m-demo{position:relative;width:300px;height:300px;overflow:hidden;border:1px solid #ddd;float:left;margin-right:20px;}
+.m-demo p{position:absolute;top:50%;left:50%;margin:0;padding:0;}
+.m-demo img{position:absolute;top:-50%;left:-50%;display:block;}
+.m-demo img.hidden{visibility:hidden;position:static;}
+</style>
+</head>
+
+<body>
+<script src="http://ossweb-img.qq.com/images/js/jquery/jquery-1.7.2.min.js" type="text/javascript"></script>
+<script src="vejis.js" type="text/javascript"></script>
+<script src="vlight.js" type="text/javascript"></script>
+<script src="../ue_set.js" type="text/javascript"></script>
+
+<div class="wrp">
+<h1>交互组件</h1>
+
+<!--
+设计稿宽度，图片size，切图方式，通用组件。
+-->
+
+<div class="container">
+
+<style type="text/css">
+body{color:#666;font-size:14px;}
+h3{font-size:22px;border-bottom:1px solid #dfdfdf;padding-bottom:10px;margin-bottom:15px;color:#404040;}
+.container{font-size:14px;line-height:1.6;}
+p{padding-left:0!important}
+.module{background:#f0f3f9;padding:10px;overflow: hidden;}
+.oDiv{width: 500px;}
+.oDiv ul li{color: #333;white-space:nowrap;overflow:hidden;}
+.oDiv1{width:100px;height: 100px;background:#f00;margin:20px;float: left;}
+.oDiv2{width:100px;height: 100px;background:#f00;margin:20px;border-radius:50%;float: left;}
+.oDiv3{display: block;float: left;}
+.cutImg{float:left;margin-right:15px;}
+.iScroll{height:400px;width:700px;position: relative;overflow:hidden;}
+.iScroll ul{position: absolute;top:0;left:0;width: 100%;height:10000px;}
+.iScroll ul li{width: 700px;height: 400px;color:#fff;font-size:20px;text-align: center;line-height: 400px;}
+
+/*select自定义*/
+.select-group{width: 350px;height: 36px;position: relative;position: relative;cursor: pointer;float:left;}
+.input-hidden{visibility: hidden;position:absolute;}
+.form-select-text{height: 36px;}
+.form-select{position: absolute;top: 0;left:0;width: 100%;height: 100%;border:1px solid #c1c1c1;text-indent:10px;font-size: 14px;border-radius:3px;background:url(images/select-jt.jpg) right center no-repeat;}
+.select-group ul{position: absolute;top: 35px;left:-1px;background:#fff;width:100%;border:1px solid #c1c1c1;border-bottom-left-radius: 3px;border-bottom-right-radius: 3px;visibility:hidden;opacity:0;z-index: 3;}
+.select-group ul.select-active{visibility: visible;opacity: 1;}
+.select-group ul li:hover{background:#efedee;}
+.ielt8 .form-select{left:10px;}
+/*checkbox,radio自定义*/
+.checkbox-group,.radio-group{position: relative;}
+.form-checkbox,.form-radio{position:relative;top: 0;left:0;}
+.form-checkbox ul li,.form-radio ul li{float: left;margin-right: 30px;cursor: pointer;}
+.form-checkbox ul li p,.form-radio ul li p{float: left;margin-right:5px;}
+.form-checkbox-icon,.form-radio-icon{width:18px;height:18px;background:url(images/checkbox-1.jpg) no-repeat;}
+.form-radio-icon{background:url(images/radio-1.png) no-repeat;}
+.form-checkbox-text{color:#707070}
+.form-checkbox-text a{color:#7ca043;}
+.form-checkbox ul li.checked .form-checkbox-icon{background:url(images/checkbox-2.jpg) no-repeat;}
+.form-radio ul li.checked .form-radio-icon{background:url(images/radio-2.png) no-repeat;}
+</style>
+
+
+<div class="section">
+	<h3 id="code_rule">JS组件调用方式</h3>
+   
+	<div class="item">
+		<h4>文字多出滚动 </h4>
+		<p>其主要作用是当文字超出一行时，如果用户鼠标在该文字上停留的时间过长，就会显示出该文字多余隐藏的内容</p>
+		<p>HTML配置</p>
+		<blockquote class="vlight"><br>
+&lt;style><br>
+	ul{width: 500px;}<br>
+	ul li{color: #333;white-space:nowrap;overflow:hidden;}<br>
+&lt;/style><br>
+&lt;ul><br>
+	&lt;li class="sTxt">&lt;a href="">今日天天炫斗上线最新的宠物版本，各种萌酷美呆的小宠物是不是已经收入旗下了呢，今天我们~&lt;/a>&lt;/li><br>
+	&lt;li class="sTxt">全新宠物版本，全新感受&lt;/li><br>
+	&lt;li class="sTxt">全新宠物版本，全新感受，今日天天炫斗上线最新的宠物版本，各种萌酷美呆的小宠物是不是已经收入旗下了呢，今天我们!&lt;/li><br>
+	&lt;li class="sTxt">全新感受，今日天天炫斗上线最新的宠物版本，各种萌酷美呆的小宠物是不是已经收入旗下了呢，今天我们.&lt;/li><br>
+&lt;/ul>
+
+		</blockquote>
+		<p>JS-调用</p>
+		<blockquote class="vlight">
+$(".sTxt").scrollText();
+		</blockquote>
+		<p class="red">案例</p>
+		<div class="module">
+			<div class="oDiv">
+				<ul>
+					<li class="sTxt"><a href="">今日天天炫斗上线最新的宠物版本，各种萌酷美呆的小宠物是不是已经收入旗下了呢，今天我们~</a></li>
+					<li class="sTxt">全新宠物版本，全新感受</li>
+					<li class="sTxt">全新宠物版本，全新感受，今日天天炫斗上线最新的宠物版本，各种萌酷美呆的小宠物是不是已经收入旗下了呢，今天我们!</li>
+					<li class="sTxt">全新感受，今日天天炫斗上线最新的宠物版本，各种萌酷美呆的小宠物是不是已经收入旗下了呢，今天我们.</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<div class="item">
+		<h4>点击波特效</h4>
+		<p>增加按钮和图片点击时的交互，使用户停留时间更长</p>
+		<p>HTML配置</p>
+		<blockquote class="vlight"><br>
+&lt;!-- rippler-bs-inverse,rippler-default 等等均是点击波的颜色 --><br>
+&lt;!-- 矩形 --><br>
+&lt;div class="oDiv1 rippler rippler-bs-inverse">&lt;/div><br>
+&lt;!-- 圆形 rippler-circle-mask --><br>
+&lt;div class="oDiv2 rippler rippler-circle-mask rippler-bs-inverse">&lt;/div><br>
+&lt;a href="#" class="oDiv3 rippler rippler-default">&lt;img src="btn-1.jpg">&lt;/a>
+		</blockquote>
+		<p>JS-调用</p>
+		<blockquote class="vlight">
+$(".rippler").rippler({<br>
+	svgSrc: "images/circle.svg"  //SVG配置地址<br>
+});
+		</blockquote>
+		<p class="red">案例</p>
+		<div class="module">
+			<div class="oDiv1 rippler rippler-bs-inverse"></div>
+			<div class="oDiv2 rippler rippler-circle-mask rippler-bs-inverse"></div>
+			<a href="javascript:;" class="oDiv3 rippler rippler-default"><img src="images/btn-1.jpg"></a>
+		</div>
+	</div>
+
+	<div class="item">
+		<h4>图片自适应尺寸</h4>
+		<p>使不同尺寸大小的图片能够适应外层框架的宽高而做出适应，主要是对图片的缩放和居中定位</p>
+		<p>HTML配置</p>
+		<blockquote class="vlight"><br>
+&lt;p style="width:50px;height:80px;" class="cutImg">&lt;img src="images/btn-1.jpg">&lt;/p><br>
+&lt;p style="width:50px;height:50px;" class="cutImg">&lt;img src="images/btn-1.jpg">&lt;/p><br>
+&lt;p style="width:50px;height:20px;" class="cutImg">&lt;img src="images/btn-1.jpg">&lt;/p><br>
+&lt;p style="width:100px;height:80px;" class="cutImg">&lt;img src="images/btn-1.jpg">&lt;/p>
+		</blockquote>
+		<p>JS-调用</p>
+		<blockquote class="vlight">
+$(".cutImg").cutImg();
+		</blockquote>
+		<p class="red">案例</p>
+		<div class="module">
+			<p style="width:50px;height:80px;overflow:hidden;" class="cutImg"><img src="images/btn-1.jpg"></p>
+			<p style="width:50px;height:50px;overflow:hidden;" class="cutImg"><img src="images/btn-1.jpg"></p>
+			<p style="width:50px;height:20px;overflow:hidden;" class="cutImg"><img src="images/btn-1.jpg"></p>
+			<p style="width:100px;height:80px;overflow:hidden;" class="cutImg"><img src="images/btn-1.jpg"></p>      
+		</div>
+	</div>
+
+	<div class="item">
+		<h4>全屏滚动</h4>
+		<p>触发指定对象的滚动事件，并且分辨他是向上（左）还是向下（右）滚动滚轮，并且触发回调函数</p>
+		<p>HTML配置</p>
+		<blockquote class="vlight"><br>
+&lt;div class="iScroll"><br>
+	&lt;ul><br>
+		&lt;li class="iPage" style="background:#f00">&lt;/li><br>
+		&lt;li class="iPage" style="background:#ff0">&lt;/li><br>
+		&lt;li class="iPage" style="background:#f0f">&lt;/li><br>
+		&lt;li class="iPage" style="background:#00f">&lt;/li><br>
+	&lt;/ul><br>
+&lt;/div>
+		</blockquote>
+		<p>JS-调用</p>
+		<blockquote class="vlight"><br>
+$(".iScroll").iWheel({<br>
+    rep : true,   // 是否能够重复多次运行<br>
+    methodL:function(){   //回调函数<br>
+        if(ipage<=0) return false;<br>
+		ipage--;<br>
+		$(".iScroll ul").animate({"top":-ipage*400},500);<br>
+    },<br>
+    methodR:function(){   //回调函数<br>
+    	if(ipage>=$(".iScroll ul li").length - 1) return false;<br>
+		ipage++;<br>
+        $(".iScroll ul").animate({"top":-ipage*400},500);<br>
+    }<br>
+});
+		</blockquote>
+		<p class="red">案例</p>
+		<div class="module">
+			<div class="iScroll">
+				<ul>
+					<li class="iPage" style="background:#f00">请滚动这里</li>
+					<li class="iPage" style="background:#ff0">请滚动这里</li>
+					<li class="iPage" style="background:#f0f">请滚动这里</li>
+					<li class="iPage" style="background:#00f">请滚动这里</li>
+				</ul>
+			</div>
+		</div>
+		<p>案例地址 <a href="http://act.qqgame.qq.com/a20151208sd/index.html" target="_blank">http://act.qqgame.qq.com/a20151208sd/index.html</a></p>
+	</div>
+
+	<div class="item">
+		<h4>帧动画播放 <span class="red">此方法主要针对需要兼容IE9以下浏览器</span></h4>
+		<p>用来控制帧动画播放</p>
+		<p>HTML配置</p>
+		<blockquote class="vlight"><br>
+&lt;style><br>
+.img1{width: 170px;height: 236px;display: block;margin:10px;background:url(a-lz.png) no-repeat;}<br>
+.img2{width: 175px;height: 174px;display: block;margin:10px;background:url(a-qp.png) no-repeat;}<br>
+&lt;/style><br>
+&lt;div class="img1 img" data-item="4" data-timer="100" data-height="236">&lt;/div><br>
+&lt;div class="img2 img" data-item="7" data-timer="120" data-height="174">&lt;/div><br>
+		</blockquote>
+		<p>JS-调用</p>
+		<blockquote class="vlight"><br>
+//帧动画播放（仅限于背景图片，为兼容IE7及以上版本而存在）<br>
+/** <br>
+ * 此处会返回方法，方便与更好的控制<br>
+ * @param  {[height]}  单个元素的高度（若为字符串格式，则在元素内进行查找）<br>
+ * @param {[act]}      图片播放总个数（若为字符串格式，则在元素内进行查找）<br>
+ * @param {[time]}     播放时间（若为字符串格式，则在元素内进行查找）<br>
+ * @param {[num]}      播放次数，默认为循环<br>
+ *<br>
+ * @return {[timer]}  返回当前是否正在执行<br>
+ * @return {[start]}  返回正在执行的方法<br>
+ * @return {[stop]}  返回停止执行的方法<br>
+*/<br>
+var callback = $(".img").bgAnimation({<br>
+	height: 'height',<br>
+	act: 'item',<br>
+	time: 'timer'<br>
+});<br>
+<br>
+$(".img").click(function(){<br>
+	var index = $(this).index();<br>
+	callback[index].timer ? callback[index].stop() : callback[index].start();	<br>
+});
+		</blockquote>
+	</div>
+</div>     
+
+<div class="section">
+	<h3>加载</h3>
+	<div class="item">
+		<h4>分屏加载</h4>
+		<p>主要解决遇到分屏切换，需分步加载的情况下使用</p>		
+		<p class="red">该方法会返回一个方法，该方法会再次执行下屏加载</p>
+		<p>JS-调用</p>
+		<blockquote class="vlight"><br>
+var pageLoad = $(".oPage").pageLazy({<br>
+	img: ".lazyload",<br>
+	callback: function(){ //加载完的回调函数1<br>
+		alert('win-1')<br>
+	}<br>
+});<br>
+<br>
+$("input").click(function(){<br>
+	// 返回的方法<br>
+	pageLoad.callback(1, function(){<br>
+		alert('win-2');<br>
+	});<br>
+})<br>
+		</blockquote>
+		<p>案例地址 <a href="case/pageload/index.html" target="_blank">点击查看分屏加载效果</a></p>
+	</div>
+
+	<div class="item">
+		<h4>页面加载loading（主要是对图片进行加载）</h4>
+		<p>主要是判断页面图片是否全部加载完成</p>
+		<p>HTML配置</p>
+		<blockquote class="vlight"><br>
+&lt;div class="loading">&lt;/div><br>
+&lt;img src="a.jpg" alt="" class="load">
+		</blockquote>
+		<p>JS-调用</p>
+		<blockquote class="vlight"><br>
+$(".load").imgLoad({<br>
+    url: ['bg.jpg','btn.png','icons-s49bb8180e2.png','icons-s482aa2403b.png'],  //所要加载图片的地址<br>
+    callback: function(){  //加载完成的回调函数<br>
+        $(".loading").fadeOut();<br>
+        init();<br>
+    }<br>
+});
+		</blockquote>
+		<p>案例地址 <a href="http://act.qqgame.qq.com/a20151208sd/index.html" target="_blank">http://act.qqgame.qq.com/a20151208sd/index.html</a></p>
+	</div>
+
+	<div class="item">
+		<h4>图片延迟加载</h4>
+		<p>如果当图片过多的情况下 可以首先只加载当前屏幕的图片，有点类似背景的延迟加载，后期可以考虑和背景加载合成一个</p>
+		<p>JS-调用</p>
+		<blockquote class="vlight"><br>
+/**<br>
+ * 图片延迟加载<br>
+ * @parse {[scroll]} 增加滚动的区间<br>
+ */<br>
+var load = $(".lazyload").lazyImg({<br>
+	scroll: 300 <br>
+});
+		</blockquote>
+		<p class="red">此组件还会返回一个方法，该方法主要用于切换tab时，被隐藏的图片显示并且同时激活延迟加载</p>
+		<p>JS-调用</p>
+		<blockquote class="vlight"><br>
+var load = $(".lazyload").lazy({<br>
+	scroll: 300<br>
+});<br>
+<br>
+$("input").click(function(){<br>
+	load();<br>
+})
+		</blockquote>
+		<p>案例地址 <a href="case/lazyImg/index.html" target="_blank">点击查看延迟加载效果</a></p>
+	</div>
+	
+	<div class="item">
+		<h4>背景延迟加载</h4>
+		<p>该插件主要作用是，避免背景过多导致多张大图并行加载的问题</p>
+		<p>HTML配置</p>
+		<blockquote class="vlight"><br>
+&lt;div class="lazyload" data-lazy="bg1.jpg">&lt;/div>	<br>
+&lt;div class="lazyload" data-lazy="bg2.jpg">&lt;/div>	<br>
+&lt;div class="lazyload" data-lazy="bg3.jpg">&lt;/div>	<br>
+&lt;div class="lazyload" data-lazy="bg4.jpg">&lt;/div>	<br>
+&lt;div class="lazyload" data-lazy="bg4.jpg">&lt;/div>	<br>
+&lt;div class="lazyload" data-lazy="bg5.jpg">&lt;/div>	<br>
+&lt;div class="lazyload" data-lazy="bg6.jpg">&lt;/div>	<br>
+&lt;div class="lazyload" data-lazy="bg7.jpg">&lt;/div>	<br>
+&lt;div class="lazyload" data-lazy="bg8.jpg">&lt;/div>	<br>
+&lt;div class="lazyload" data-lazy="bg9.jpg">&lt;/div>	<br>
+&lt;div class="lazyload" data-lazy="bg10.jpg">&lt;/div>
+		</blockquote>
+		<p>JS-调用</p>
+		<blockquote class="vlight">
+$(".lazyload").lazybg({<br>
+	distance : 300  //设置滚动区间<br>
+});
+		</blockquote>
+		<p>案例地址 <a href="http://qqgame.qq.com/act/a20150917lz/index.html" target="_blank">http://qqgame.qq.com/act/a20150917lz/index.html</a></p>
+	</div>
+
+</div>
+
+<div class="section">
+	<h3 id="code_rule">特殊动画</h3>
+	<div class="item">
+		<h4>圣诞雪花飘落效果（只兼容高版本浏览器）</h4>
+		<p>添加雪花飘落动画，添加节日氛围</p>
+		<p class="red">需要配置一个放置雪花的外层框架</p>
+		<p>HTML配置</p>
+		<blockquote class="vlight"><br>
+&lt;div class="page-xue" style="position: absolute;top: 0;left: 0;width: 100%;height: 100%;overflow: hidden;">&lt;/div>
+		</blockquote>
+		<p>JS-调用</p>
+		<blockquote class="vlight"><br>
+/**<br>
+ * 雪花飘落特效<br>
+ * @type {width} 单个雪花的宽度<br>
+ * @type {height} 单个雪花的高度<br>
+ * @type {src} 雪花图片的地址<br>
+ * @type {maxHeight} 雪花落下的高度, 默认为不存在, 如果不存在则取外层框架的高度<br>
+ */<br>
+$(".page-xue").snow({<br>
+	width: 84,<br>
+	height: 91, <br>
+	src: 'http://ossweb-img.qq.com/images/qqgame/act/a20151215sd/xue.png',<br>
+	maxHeight: 1300<br>
+});
+		</blockquote>
+	</div>
+
+	<div class="item">
+		<h4>SVG线条描边动画 <span class="red">（仅支持高版本浏览器）</span></h4>
+		<p>JS-调用</p>
+		<blockquote class="vlight"><br>
+var svg = $(".line-drawing").svganimations();
+		</blockquote>
+		<p>案例地址 <a href="case/svganimation/index.html" target="_blank">查看demo</a></p>
+	</div>
+</div> 
+
+<div class="section">
+	<h3 id="code_rule">自定义表单</h3>
+	<div class="item">
+		<h4>主要用于单选，复选，下拉菜单</h4>
+		<p>因为默认表单样式太过于简单，可能不太适合设计的要求，此时则需要自定义表单。</p>
+		<p class="red">既要满足设计的需要，同时也要兼顾开发的获取是否方便</p>
+		<p class="red">注意：样式可以自定义，掌握方法最为重要</p>
+		<p>HTML配置</p>
+		<blockquote class="vlight"><br>
+/**<br>
+ * 多项选择<br>
+ */<br>
+&lt;div class="checkbox-group"><br>
+	&lt;!-- 此处注意 input必须带有ID值 同时同级的form-checkbox也应该带有和input的ID值相同 --><br>
+    &lt;input type="text" class="input-hidden" id="c1"><br>
+    &lt;div class="form-checkbox" data-id="c1"><br>
+        &lt;ul><br>
+            &lt;li class="checked"><br>
+                &lt;p class="form-checkbox-icon">&lt;/p><br>
+                &lt;p class="form-checkbox-text">111&lt;/p><br>
+            &lt;/li><br>
+            &lt;li class="checked"><br>
+                &lt;p class="form-checkbox-icon">&lt;/p><br>
+                &lt;p class="form-checkbox-text">222&lt;/p><br>
+            &lt;/li><br>
+        &lt;/ul><br>
+    &lt;/div><br>
+&lt;/div><br>
+
+/**<br>
+ * 单项选择<br>
+ */<br>
+&lt;div class="radio-group"><br>
+    &lt;input type="text" class="input-hidden" id="c1"><br>
+    &lt;div class="form-radio" data-id="c1"><br>
+        &lt;ul><br>
+            &lt;li class="checked"><br>
+                &lt;p class="form-radio-icon">&lt;/p><br>
+                &lt;p class="form-radio-text">免费游戏&lt;/p><br>
+            &lt;/li><br>
+            &lt;li><br>
+                &lt;p class="form-radio-icon">&lt;/p><br>
+                &lt;p class="form-radio-text">付费游戏&lt;/p><br>
+            &lt;/li><br>
+        &lt;/ul><br>
+    &lt;/div><br>
+&lt;/div><br>
+
+/**<br>
+ * 下拉菜单<br>
+ */<br>
+&lt;div class="select-group"><br>
+    &lt;input type="text" class="input-hidden" id="s2" value=""><br>
+    &lt;div class="form-select" data-id="s2"><br>
+        &lt;p class="form-select-text">&lt;/p><br>
+        &lt;ul class="select-active"><br>
+            &lt;li>角色扮演（RPG）&lt;/li><br>
+            &lt;li>棋牌游戏&lt;/li><br>
+            &lt;li>休闲益智&lt;/li><br>
+            &lt;li>模拟养成&lt;/li><br>
+        &lt;/ul><br>
+    &lt;/div><br>
+&lt;/div><br>
+
+		</blockquote>
+		<p>CSS配置</p>
+		<blockquote class="vlight"><br>
+/*select自定义*/<br>
+.select-group{width: 350px;height: 36px;position: relative;position: relative;cursor: pointer;}<br>
+.input-hidden{visibility: hidden;position:absolute;}<br>
+.form-select-text{height: 36px;}<br>
+.form-select{position: absolute;top: 0;left:0;width: 100%;height: 100%;border:1px solid #c1c1c1;text-indent:10px;font-size: 14px;border-radius:3px;background:url(images/select-jt.jpg) right center no-repeat;}<br>
+.select-group ul{position: absolute;top: 35px;left:-1px;background:#fff;width:100%;border:1px solid #c1c1c1;border-bottom-left-radius: 3px;border-bottom-right-radius: 3px;visibility:hidden;opacity:0;z-index: 3;}<br>
+.select-group ul.select-active{visibility: visible;opacity: 1;}<br>
+.select-group ul li:hover{background:#efedee;}<br>
+.ielt8 .form-select{left:10px;}<br>
+/*checkbox,radio自定义*/<br>
+.checkbox-group,.radio-group{position: relative;}<br>
+.form-checkbox,.form-radio{position:relative;top: 0;left:0;}<br>
+.form-checkbox ul li,.form-radio ul li{float: left;margin-right: 30px;cursor: pointer;}<br>
+.form-checkbox ul li p,.form-radio ul li p{float: left;margin-right:5px;}<br>
+.form-checkbox-icon,.form-radio-icon{width:18px;height:18px;background:url(images/checkbox-1.jpg) no-repeat;}<br>
+.form-radio-icon{background:url(images/radio-1.png) no-repeat;}<br>
+.form-checkbox-text{color:#707070}<br>
+.form-checkbox-text a{color:#7ca043;}<br>
+.form-checkbox ul li.checked .form-checkbox-icon{background:url(images/checkbox-2.jpg) no-repeat;}<br>
+.form-radio ul li.checked .form-radio-icon{background:url(images/radio-2.png) no-repeat;}<br>
+		</blockquote>
+		<p>JS-调用</p>
+		<blockquote class="vlight"><br>
+	// 下拉菜单<br>
+	$(".form-select-text").click(function(){<br>
+        var _this = $(this);<br>
+        var iUl = _this.next("ul");<br>
+        if (iUl.css("visibility")=="hidden") {<br>
+            iUl.addClass("select-active");<br>
+        } else {<br>
+            iUl.removeClass("select-active");<br>
+        }<br>
+    });<br>
+	$(".form-select ul li").click(function(){<br>
+        var id = $(this).parents(".form-select").data("id");<br>
+        var text = $(this).text();<br>
+        $("#"+id).val(text);<br>
+        //console.log($("#"+id).val());<br>
+        $(".form-select[data-id="+id+"]").find("p").html(text);<br>
+        $(".form-select[data-id="+id+"]").find("ul").removeClass("select-active");<br>
+    });<br>
+    //checkbox模拟<br>
+    $(".form-checkbox ul li").click(function(){<br>
+        var id = $(this).parents(".form-checkbox").data("id");<br>
+        if($(this).hasClass("checked")){<br>
+            $(this).removeClass("checked");<br>
+        }else{<br>
+            $(this).addClass("checked");<br>
+        }<br>
+        //checkbox传值<br>
+        checkboxVal(id);<br>
+    });<br>
+    function checkboxVal(id){<br>
+        var _arr = [];<br>
+        $(".form-checkbox[data-id="+id+"] ul li").each(function(){<br>
+           if($(this).hasClass("checked")){<br>
+               _arr.push(1);<br>
+           }else{<br>
+               _arr.push(0);<br>
+           }<br>
+        });<br>
+        var _text = _arr.join(":");<br>
+        $("#"+id).val(_text);<br>
+        // console.log($("#"+id).val());<br>
+    }<br>
+    //单选radio<br>
+    $(".form-radio ul li").click(function(){<br>
+        var index = $(this).index();<br>
+        var id = $(this).parents(".form-radio").data("id");<br>
+        $(this).addClass("checked").siblings("li").removeClass("checked");<br>
+        $("#"+id).val(index);<br>
+        // console.log($("#"+id).val());<br>
+    });<br>
+		</blockquote>
+		<p>案例</p>
+		<div class="module" style="height:150px;">
+			<div class="checkbox-group">
+			    <input type="text" class="input-hidden" id="c1">
+			    <div class="form-checkbox" data-id="c1">
+			        <ul>
+			            <li class="checked">
+			                <p class="form-checkbox-icon"></p>
+			                <p class="form-checkbox-text">多选</p>
+			            </li>
+			            <li class="checked">
+			                <p class="form-checkbox-icon"></p>
+			                <p class="form-checkbox-text">多选</p>
+			            </li>
+			        </ul>
+			    </div>
+			</div>
+
+			<div class="radio-group">
+                <input type="text" class="input-hidden" id="c1">
+                <div class="form-radio" data-id="c1">
+                    <ul>
+                        <li class="checked">
+                            <p class="form-radio-icon"></p>
+                            <p class="form-radio-text">免费游戏</p>
+                        </li>
+                        <li>
+                            <p class="form-radio-icon"></p>
+                            <p class="form-radio-text">付费游戏</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="select-group">
+                <input type="text" class="input-hidden" id="s2" value="">
+                <div class="form-select" data-id="s2">
+                    <p class="form-select-text"></p>
+                    <ul class="select-active">
+                        <li>角色扮演（RPG）</li>
+                        <li>棋牌游戏</li>
+                        <li>休闲益智</li>
+                        <li>模拟养成</li>
+                    </ul>
+                </div>
+            </div>
+		</div>
+	</div>
+</div>
+
+<div class="section">
+	<h3 id="code_rule">图片居中溢出隐藏CSS解决方案</h3>
+	<div class="item">
+		<h4>使图片一直居中</h4>
+		<p>HTML + CSS：</p>
+		<blockquote class="vlight"><br>
+&lt;div class="m-demo"><br>
+    &lt;p><br>
+        &lt;img src="http://nec.netease.com/img/s/1.jpg" class="hidden"/><br>
+        &lt;img src="http://nec.netease.com/img/s/1.jpg" alt=""/><br>
+    &lt;/p><br>
+&lt;/div><br>
+&lt;div class="m-demo"><br>
+    &lt;p><br>
+        &lt;img src="http://nec.netease.com/img/m/1.jpg" class="hidden"/><br>
+        &lt;img src="http://nec.netease.com/img/m/1.jpg" alt=""/><br>
+    &lt;/p><br>
+&lt;/div><br>
+&lt;div class="m-demo"><br>
+    &lt;p><br>
+        &lt;img src="http://nec.netease.com/img/l/1.jpg" class="hidden"/><br>
+        &lt;img src="http://nec.netease.com/img/l/1.jpg" alt=""/><br>
+    &lt;/p><br>
+&lt;/div><br>
+<br>
+/* 图片居中溢出隐藏  */  <br>
+.m-demo{position:relative;width:300px;height:300px;overflow:hidden;border:1px solid #ddd;}<br>
+.m-demo p{position:absolute;top:50%;left:50%;margin:0;padding:0;}<br>
+.m-demo img{position:absolute;top:-50%;left:-50%;display:block;}<br>
+.m-demo img.hidden{visibility:hidden;position:static;}<br>
+		</blockquote>
+	</div>
+
+	<div class="module" style="height:500px;">
+		<div class="m-demo">
+		    <p>
+		        <img src="http://nec.netease.com/img/s/1.jpg" class="hidden"/>
+		        <img src="http://nec.netease.com/img/s/1.jpg" alt=""/>
+		    </p>
+		</div>
+		<div class="m-demo">
+		    <p>
+		        <img src="http://nec.netease.com/img/m/1.jpg" class="hidden"/>
+		        <img src="http://nec.netease.com/img/m/1.jpg" alt=""/>
+		    </p>
+		</div>
+		<div class="m-demo">
+		    <p>
+		        <img src="http://nec.netease.com/img/l/1.jpg" class="hidden"/>
+		        <img src="http://nec.netease.com/img/l/1.jpg" alt=""/>
+		    </p>
+		</div>
+	</div>
+</div>
+
+<div class="section">
+	<h3 id="code_rule">常用的IE低版本兼容处理</h3>
+	<div class="item">
+		<h4>判断当前浏览器版本 <span class="red">移动端和IE6的判断解决方法</span></h4>
+		<p>JS解决方案：</p>
+		<blockquote class="vlight"><br>
+//判断是否是IE6<br>
+var isIE6 = /msie 6/i.test(navigator.userAgent);<br>
+//判断是否是IE<br>
+var isIE = /msie/i.test(navigator.userAgent);<br>
+//返回版本值<br>
+var browser = (function(){<br>
+			var isIE6 = /msie 6/i.test(navigator.userAgent);<br>
+			var isIE7 = /msie 7/i.test(navigator.userAgent);<br>
+			var isIE8 = /msie 8/i.test(navigator.userAgent);<br>
+			var isIE = /msie/i.test(navigator.userAgent);<br>
+			return {<br>
+				msie:isIE,<br>
+				version:function(){<br>
+					switch(true){<br>
+						case isIE6:return 6;<br>
+						case isIE7:return 7;<br>
+						case isIE8:return 8;<br>
+					}<br>
+				}()<br>
+			};<br>
+		})();<br>
+alert(browser.msie);<br>
+alert(browser.version);<br>
+<br>
+//判断是否为移动端<br>
+var sUserAgent = navigator.userAgent.toLowerCase();  <br>
+var bIsIpad = sUserAgent.match(/ipad/i) == "ipad";  <br>
+var bIsIphoneOs = sUserAgent.match(/iphone os/i) == "iphone os";  <br>
+var bIsMidp = sUserAgent.match(/midp/i) == "midp";  <br>
+var bIsUc7 = sUserAgent.match(/rv:1.2.3.4/i) == "rv:1.2.3.4";  <br>
+var bIsUc = sUserAgent.match(/ucweb/i) == "ucweb";  <br>
+var bIsAndroid = sUserAgent.match(/android/i) == "android";  <br>
+var bIsCE = sUserAgent.match(/windows ce/i) == "windows ce";  <br>
+var bIsWM = sUserAgent.match(/windows mobile/i) == "windows mobile";  <br>
+if ((bIsIpad || bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM) ){  <br>
+    window.location.href = "../tx_mobile/index.html";<br>
+}<br>
+		</blockquote>
+
+		<p>HTML解决方案：</p>
+		<blockquote class="vlight"><br>
+&lt;!--[if lt IE 7 ]> &lt;html lang="zh" class="ie6 ielt8 ielt9"> &lt;![endif]--><br>
+&lt;!--[if IE 7 ]> &lt;html lang="zh" class="ie7 ielt8 ielt9"> &lt;![endif]--><br>
+&lt;!--[if IE 8 ]> &lt;html lang="zh" class="ie8 ielt9"> &lt;![endif]--><br>
+&lt;!--[if (gte IE 9)|!(IE)]>&lt;!--> &lt;html lang="zh">  &lt;!--&lt;![endif]--><br>
+		</blockquote>
+	</div>
+	<div class="item">
+		<h4>固定定位 / position:fixed <span class="red">IE6及以下浏览器</span></h4>
+		<p>解决方案：</p>
+		<blockquote class="vlight"><br>
+&lt;div style="position:fixed; top:0; left:0; _position:absolute; _top:expression(offsetParent.scrollTop);<br> _left:expression(offsetParent.scrollLeft);">&lt;/div>
+		</blockquote>
+	</div>
+	<div class="item">
+		<h4>I透明度 / opacity / RGBA / PNG <span class="red">IE7及以下浏览器</span></h4>
+		<p>PNG背景处理</p>
+		<blockquote class="vlight"><br>
+filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='http://minigame.qq.com/static/images/index/fm_guide.png',sizingMethod='crop');
+		</blockquote>
+		<p>RGBA透明度处理</p>
+		<blockquote class="vlight"><br>
+background:rgba(0,0,0,0.5);<br>
+filter:progid:DXImageTransform.Microsoft.gradient(gradientType=1,startColorstr=#B3000000,endColorstr=#B3000000);<br>
+		</blockquote>
+		<p>opacity透明度处理</p>
+		<blockquote class="vlight"><br>
+opacity:0.5;<br>
+filter:alpha(opacity=50);<br>
+		</blockquote>
+	</div>
+</div>
+
+</div>
+</div>
+
+<script type="text/javascript">
+$(".sTxt").scrollText();
+$(".rippler").rippler({
+	svgSrc: "images/circle.svg"
+});
+$(".cutImg").cutImg();
+var ipage = 0;
+$(".iScroll").iWheel({
+    "rep":true,
+    methodL:function(){
+        if(ipage<=0) return false;
+		ipage--;
+		$(".iScroll ul").animate({"top":-ipage*400},500);
+    },
+    methodR:function(){
+    	if(ipage>=$(".iScroll ul li").length - 1) return false;
+		ipage++;
+        $(".iScroll ul").animate({"top":-ipage*400},500);
+    }
+});
+	
+	// 下拉菜单
+	$(".form-select-text").click(function(){
+        var _this = $(this);
+        var iUl = _this.next("ul");
+        if (iUl.css("visibility")=="hidden") {
+            iUl.addClass("select-active");
+        } else {
+            iUl.removeClass("select-active");
+        }
+    });
+	$(".form-select ul li").click(function(){
+        var id = $(this).parents(".form-select").data("id");
+        var text = $(this).text();
+        $("#"+id).val(text);
+        //console.log($("#"+id).val());
+        $(".form-select[data-id="+id+"]").find("p").html(text);
+        $(".form-select[data-id="+id+"]").find("ul").removeClass("select-active");
+    });
+    //checkbox模拟
+    $(".form-checkbox ul li").click(function(){
+        var id = $(this).parents(".form-checkbox").data("id");
+        if($(this).hasClass("checked")){
+            $(this).removeClass("checked");
+        }else{
+            $(this).addClass("checked");
+        }
+        //checkbox传值
+        checkboxVal(id);
+    });
+    function checkboxVal(id){
+        var _arr = [];
+        $(".form-checkbox[data-id="+id+"] ul li").each(function(){
+           if($(this).hasClass("checked")){
+               _arr.push(1);
+           }else{
+               _arr.push(0);
+           }
+        });
+        var _text = _arr.join(":");
+        $("#"+id).val(_text);
+        // console.log($("#"+id).val());
+    }
+
+    //单选radio
+    $(".form-radio ul li").click(function(){
+        var index = $(this).index();
+        var id = $(this).parents(".form-radio").data("id");
+        $(this).addClass("checked").siblings("li").removeClass("checked");
+        $("#"+id).val(index);
+        // console.log($("#"+id).val());
+    });
+
+</script>
+</body>
+</html>
